@@ -1,5 +1,5 @@
 """
-Django settings for cf_app project.
+Django settings for prob3 project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -17,15 +17,27 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qql_-8j@qro95n$mm%t#6)l$6#-rs!zufat9t6-*2h^&!&-jmd'
+SECRET_KEY = '&^rtfjv@f6=nvs=hx*-$@cfup@41yphmho8&md2h_eth)d@rb)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, "templates")]
+
 ALLOWED_HOSTS = []
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    "usradmin.views.basicglobal",
+)
 
 # Application definition
 
@@ -36,6 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'usradmin',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,9 +61,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'cf_app.urls'
+ROOT_URLCONF = 'prob3.urls'
 
-WSGI_APPLICATION = 'cf_app.wsgi.application'
+WSGI_APPLICATION = 'prob3.wsgi.application'
 
 
 # Database
