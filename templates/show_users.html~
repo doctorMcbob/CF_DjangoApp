@@ -1,0 +1,5 @@
+{% for user in users %}
+<p>
+  <a href="{% url 'edit' user.id  %}">{{user.first}} {{user.last}}</a>
+</p>
+{% endfor %}
