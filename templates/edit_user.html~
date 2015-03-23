@@ -1,1 +1,18 @@
 <p> {{user.first}} {{user.last}} : {{user.email}} </p>
+
+<body>
+  <form action="{% url 'edit_user' %}" method="get">
+    First Name: <input type="text" name="first"><br />
+    Last Name: <input type="text" name="last"><br />
+    Email: <input type="text" name="email"><br />
+    <input type="hidden" name="id" value={{user.id}}>
+    <input type="submit" value="Update">
+  </form>
+
+  <form action="{% url 'delete_user' %}" method="get">
+    <input type="hidden" name="id" value={{user.id}}>
+    <input type="submit" value="Delete">
+  </form>
+  
+  <a href="{% url 'home' %}">Back</a>
+</body>

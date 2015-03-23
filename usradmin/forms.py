@@ -5,6 +5,7 @@ from django import forms
 from usradmin.models import BasicUser
 
 def edit_user(request):
+    error=False
     usr = BasicUser.objects.get(pk=request.GET['id'])
     if request.GET['first']:
         usr.first = request.GET['first']
@@ -12,8 +13,14 @@ def edit_user(request):
         usr.last = request.GET['last']
     if request.GET['email']:
         usr.email = request.GET['email']
-    usr.save()
-    return render(request, 'show_users.html')
+        try:
+            validators.validate_email(usr.email)
+        except forms.ValidationError:
+            error = True
+    if not error:
+        usr.save()
+    return render(request, 'show_users.html',
+                  {'user':usr,'error':error})
     
 def delete_user(request):
     usr = BasicUser.objects.get(pk=request.GET['id'])

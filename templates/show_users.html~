@@ -1,5 +1,17 @@
 {% for user in users %}
 <p>
-  <a href="{% url 'edit' user.id  %}">{{user.first}} {{user.last}}</a>
+  <a href="{% url 'edit' user.id  %}">{{user.first}} {{user.last}}</a> 
 </p>
 {% endfor %}
+
+{% if error %}
+<p style="color: red;">Please make sure you have entered at least a first name and have not entered an invalid email. </p>
+{% endif %}
+
+<form action="{% url 'new_user' %}" method=GET>
+  First Name: <input type="text" name="first"><br />
+  Last Name: <input type="text" name="last"><br />
+  Email: <input type="text" name="email"><br />
+  <input type="hidden" name="id" value={{user.id}}>
+  <input type="submit" value="Create">
+</form>
